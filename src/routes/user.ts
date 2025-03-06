@@ -5,7 +5,7 @@ import {
   getUserCtrl,
   updateUserCtrl,
   deleteUserCtrl,
-} from "../controllers/user.ctrl";
+} from "../controllers/user.control";
 import { authMiddleware, adminMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();

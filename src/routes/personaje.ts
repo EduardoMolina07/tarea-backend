@@ -5,7 +5,7 @@ import {
   getPersonajeCtrl,
   deletePersonajeCtrl,
   updatePersonajeCtrl,
-} from "../controllers/personaje.ctrl";
+} from "../controllers/personaje.control";
 import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();

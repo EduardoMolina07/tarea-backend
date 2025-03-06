@@ -1,6 +1,6 @@
 // src/routes/auth.ts
 import { Router } from "express";
-import { registerCtrl, loginCtrl } from "../controllers/auth.ctrl";
+import { registerCtrl, loginCtrl } from "../controllers/auth.control";
 import { body } from "express-validator";
 
 const router = Router();
