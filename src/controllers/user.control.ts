@@ -21,7 +21,7 @@ export const getUserCtrl = async (req: Request, res: Response): Promise<void> =>
     const id = Number(req.params.id);
     const user = await getUserByIdSrv(id);
     if (!user) {
-      res.status(404).json({ error: "Usuario no encontrado" });
+      res.status(404).json({ error: "Usuario no registrado" });
       return;
     }
     res.json({ data: user });

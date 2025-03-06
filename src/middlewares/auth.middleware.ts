@@ -31,7 +31,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
 export const adminMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const user = (req as any).user;
   if (user?.rol !== "ADMIN") {
-    res.status(403).json({ error: "Se requiere rol ADMIN" });
+    res.status(403).json({ error: "Se requiere ser ADMIN" });
     return;
   }
   next();

@@ -16,7 +16,7 @@ export const registerCtrl = async (req: Request, res: Response): Promise<void> =
 
     // Envía respuesta sin 'return res.json(...)'
     res.status(201).json({
-      message: "Usuario registrado",
+      message: "Usuario bien registrado",
       data: user,
     });
   } catch (error: any) {
