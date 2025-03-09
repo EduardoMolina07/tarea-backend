@@ -1,21 +1,17 @@
 // src/routes/user.ts
-import { Router } from "express";
-import {
-  listUsersCtrl,
-  getUserCtrl,
-  updateUserCtrl,
-  deleteUserCtrl,
-} from "../controllers/user.control";
-import { authMiddleware, adminMiddleware } from "../middlewares/auth.middleware";
+import { Router } from 'express';
+import { listUsersCtrl, getUserCtrl, updateUserCtrl, deleteUserCtrl } from '../controllers/user.ctrl';
+import { authMiddleware, adminMiddleware } from '../middlewares/auth.middleware';
 
 const router = Router();
 
-/**
- * Rutas protegidas: solo ADMIN
- */
-router.get("/list", authMiddleware, adminMiddleware, listUsersCtrl);
-router.get("/:id", authMiddleware, adminMiddleware, getUserCtrl);
-router.put("/:id", authMiddleware, adminMiddleware, updateUserCtrl);
-router.delete("/:id", authMiddleware, adminMiddleware, deleteUserCtrl);
+// Aplica primero authMiddleware para asegurar que el usuario esté logueado
+// y luego adminMiddleware para restringir el acceso a rol "ADMIN"
+router.use(authMiddleware, adminMiddleware);
 
-export { router };
+router.get('/', listUsersCtrl);       // GET todos los usuarios
+router.get('/:id', getUserCtrl);      // GET usuario por id
+router.put('/:id', updateUserCtrl);   // UPDATE
+router.delete('/:id', deleteUserCtrl);// DELETE
+
+export default router;

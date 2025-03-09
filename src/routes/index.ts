@@ -1,19 +1,13 @@
 // src/routes/index.ts
-import { Router } from "express";
-import { readdirSync } from "fs";
+import { Router } from 'express';
+import authRouter from './auth';
+import userRouter from './user';
+import personajeRouter from './personaje'; // CRUD de personajes
 
-const PATH_ROUTER = `${__dirname}`;
 const router = Router();
 
-const cleanFileName = (fileName: string) => fileName.split(".").shift()!;
+router.use('/auth', authRouter);
+router.use('/users', userRouter);       // Acceso solo para ADMIN
+router.use('/personajes', personajeRouter); // Acceso para usuarios autenticados
 
-readdirSync(PATH_ROUTER).forEach((filename) => {
-  const cleanName = cleanFileName(filename);
-  if (cleanName !== "index") {
-    import(`./${cleanName}`).then((moduleRouter) => {
-      router.use(`/${cleanName}`, moduleRouter.router);
-    });
-  }
-});
-
-export { router };
+export default router;
